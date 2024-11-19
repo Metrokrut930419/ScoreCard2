@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Metrokrut930419.github.io/ScoreCard2",
+  "homepage": "https://metrokrut930419.github.io/ScoreCard2/",
   "scripts": {
     "start": "vite",                          
     "build": "vite build",                    
