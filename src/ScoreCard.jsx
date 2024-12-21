@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import golfBallImage from '/src/assets/golfball.png';
 
@@ -106,14 +106,45 @@ const ScoreCard = () => {
             <div className='total-score'>Total Score: {calculateTotalScore()}</div>
 
             {/* Visa historik över tidigare hål */}
-            <h3>Score History</h3>
-            <ul>
-                {scoreHistory.map((item, index) => (
-                    <li key={index}>
-                        Hole {item.hole}: Par {item.par}, Score {item.score}, Resultat: {item.totalScore}
-                    </li>
-                ))}
-            </ul>
+<h5>recent scores</h5>            
+       <ul>
+    {scoreHistory.slice().reverse().map((item, index) => (
+        <li key={index}>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>{item.hole}</td>
+                        <td>
+                            <div className='par-btn-container'>
+                                <button className={`par-button ${item.par === 3 ? 'selected' : ''}`}>3</button>
+                                <button className={`par-button ${item.par === 4 ? 'selected' : ''}`}>4</button>
+                                <button className={`par-button ${item.par === 5 ? 'selected' : ''}`}>5</button>
+                            </div>
+                        </td>
+                        <td>
+                            <div className='score-btn-container' style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gridGap: '0rem' }}>
+                                {[7, 6, 5, 4, 3, 2].map((score) => (
+                                    <button
+                                        key={score}
+                                        className={`score-button ${item.score === score ? 'selected' : ''}`}
+                                    >
+                                        <div>
+                                            <img src={golfBallImage} alt="Golf Ball" />
+                                            <span>{score}</span>
+                                        </div>
+                                    </button>
+                                ))}
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Resultat: {item.totalScore}</p>
+        </li>
+    ))}
+</ul>
+
+
         </div>
     );
 };
